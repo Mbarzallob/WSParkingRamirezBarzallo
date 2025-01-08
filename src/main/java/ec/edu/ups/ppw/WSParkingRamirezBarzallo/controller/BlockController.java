@@ -26,6 +26,7 @@ public class BlockController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response addBlock(Block block){
         try
         {
@@ -39,6 +40,7 @@ public class BlockController {
     }
     @PUT
     @Path("/{blockId}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBlock(@PathParam("blockId") int blockId,Block block){
         try
