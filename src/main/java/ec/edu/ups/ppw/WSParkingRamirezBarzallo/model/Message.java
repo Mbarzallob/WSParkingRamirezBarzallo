@@ -6,19 +6,11 @@ import jakarta.persistence.*;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="id_message")
-    private int idMessage;
+    private int id;
+
     private String message;
     private String email;
     private String name;
-
-    public int getIdMessage() {
-        return idMessage;
-    }
-
-    public void setIdMessage(int idMessage) {
-        this.idMessage = idMessage;
-    }
 
     public String getMessage() {
         return message;
@@ -42,5 +34,13 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
