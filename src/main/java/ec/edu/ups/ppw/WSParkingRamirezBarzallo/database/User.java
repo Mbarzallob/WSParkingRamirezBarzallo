@@ -1,4 +1,4 @@
-package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model;
+package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database;
 
 import jakarta.persistence.*;
 

@@ -1,6 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.ParkingSpace;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.ParkingSpace;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;

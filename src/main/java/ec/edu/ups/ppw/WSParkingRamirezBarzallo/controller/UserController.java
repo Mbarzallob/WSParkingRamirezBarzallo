@@ -1,7 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.Role;
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.Status;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Role;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Status;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -13,6 +13,7 @@ import java.util.List;
 
 @Path("/user")
 public class UserController {
+
     @GET
     @Path("/role")
     @Produces(MediaType.APPLICATION_JSON)
