@@ -12,6 +12,10 @@ public class ParkingSpace {
     @JoinColumn(name = "block_id")
     private Block block;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parkink_space_type_id")
+    private ParkingSpaceType parkingSpaceType;
+
     public int getId() {
         return id;
     }
