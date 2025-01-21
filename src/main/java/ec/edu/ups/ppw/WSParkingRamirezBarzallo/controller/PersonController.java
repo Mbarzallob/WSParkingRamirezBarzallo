@@ -1,9 +1,9 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Gender;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Vehicle;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.person.VehicleRequest;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -24,6 +24,21 @@ public class PersonController {
         catch(Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
+    }
+
+
+    @GET
+    @Path("/vehicle/{personId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getVehicles(@PathParam("personId") int personId){
+        return Response.ok(personId).build();
+    }
+
+    @POST
+    @Path("/vehicle/{personId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addVehicle(@PathParam("personId") int personId, VehicleRequest vehicle){
+        return Response.ok(personId).build();
     }
 
 

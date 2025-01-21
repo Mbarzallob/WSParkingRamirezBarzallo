@@ -38,21 +38,7 @@ public class BlockController {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
-    @PUT
-    @Path("/{blockId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateBlock(@PathParam("blockId") int blockId,Block block){
-        try
-        {
-            //TODO: LOGIC UPDATE
-            return Response.ok(block).build();
-        }
-        catch(Exception e)
-        {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
-    }
+
     @DELETE
     @Path("/{blockId}")
     @Produces(MediaType.APPLICATION_JSON)

@@ -1,9 +1,8 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.ContractType;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.contract.ContractRequest;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -26,4 +25,11 @@ public class ContractController {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addContract(ContractRequest contractRequest) {
+        return Response.ok(contractRequest).build();
+    }
+
 }

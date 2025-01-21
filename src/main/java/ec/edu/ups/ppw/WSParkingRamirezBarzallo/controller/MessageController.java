@@ -44,31 +44,5 @@ public class MessageController {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
-    @PUT
-    @Path("/{messageId}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateBlock(@PathParam("messageId") int messageId,Message message){
-        try
-        {
-            //TODO: LOGIC UPDATE
-            return Response.ok(message).build();
-        }
-        catch(Exception e)
-        {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
-    }
-    @DELETE
-    @Path("/{messageId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteBlock(@PathParam("messageId") int messageId){
-        try
-        {
-            return Response.ok().build();
-        }
-        catch (Exception e)
-        {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
-    }
+
 }

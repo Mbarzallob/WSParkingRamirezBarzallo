@@ -2,9 +2,9 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Role;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Status;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.admin.UserRequest;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -40,5 +40,18 @@ public class UserController {
         catch(Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUsers(){
+        return Response.ok(new ArrayList<User>()).build();
+    }
+
+    @PUT
+    @Path("/{userId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateUser(@PathParam("userId") int userId, UserRequest user){
+        return Response.ok(user).build();
     }
 }
