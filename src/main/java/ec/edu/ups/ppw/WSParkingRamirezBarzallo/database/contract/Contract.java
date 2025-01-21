@@ -1,5 +1,7 @@
-package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database;
+package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Vehicle;
 import jakarta.persistence.*;
 
 import java.util.Date;

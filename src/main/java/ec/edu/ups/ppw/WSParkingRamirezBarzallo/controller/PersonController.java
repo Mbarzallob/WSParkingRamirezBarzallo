@@ -1,6 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Gender;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Gender;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;

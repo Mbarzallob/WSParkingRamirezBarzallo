@@ -1,4 +1,4 @@
-package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database;
+package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

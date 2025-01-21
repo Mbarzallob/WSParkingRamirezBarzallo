@@ -1,4 +1,4 @@
-package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database;
+package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,13 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Gender {
-
+public class VehicleType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String description;
+    private String type;
 
     public int getId() {
         return id;
@@ -22,11 +21,11 @@ public class Gender {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
     }
 }

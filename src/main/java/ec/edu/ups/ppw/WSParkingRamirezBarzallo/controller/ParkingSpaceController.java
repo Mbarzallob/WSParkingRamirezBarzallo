@@ -1,6 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.ParkingSpace;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpaceType;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -70,6 +71,19 @@ public class ParkingSpaceController {
         }
         catch (Exception e)
         {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+    @GET
+    @Path("/types")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getParkingSpaceType(){
+        try
+        {
+            List<ParkingSpaceType> parkingSpaceType = new ArrayList<ParkingSpaceType>();
+            return Response.ok(parkingSpaceType).build();
+        }
+        catch(Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }

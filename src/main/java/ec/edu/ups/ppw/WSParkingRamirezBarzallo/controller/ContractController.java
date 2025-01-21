@@ -1,29 +1,29 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.ParkingSpaceType;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.ContractType;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/parkingSpaceType")
-public class ParkingSpaceTypeController {
+import java.util.ArrayList;
+import java.util.List;
 
-	@GET
+@Path("/contract")
+public class ContractController {
+    @GET
+    @Path("/types")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getParkingSpaceType(){
+    public Response getContractType() {
         try
         {
-            List<ParkingSpaceType> parkingSpaceType = new ArrayList<ParkingSpaceType>();
-            return Response.ok(parkingSpaceType).build();
+            List<ContractType> contractTypes = new ArrayList<>();
+            return Response.ok(contractTypes).build();
         }
-        catch(Exception e){
+        catch(Exception e)
+        {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
-
 }

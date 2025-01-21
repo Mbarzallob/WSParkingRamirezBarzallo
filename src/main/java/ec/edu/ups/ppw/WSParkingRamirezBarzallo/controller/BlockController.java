@@ -1,6 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Block;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.Block;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;

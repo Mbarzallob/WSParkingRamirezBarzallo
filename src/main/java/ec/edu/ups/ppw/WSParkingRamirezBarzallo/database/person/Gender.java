@@ -1,4 +1,4 @@
-package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database;
+package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Role {
+public class Gender {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

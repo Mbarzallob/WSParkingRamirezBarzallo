@@ -3,7 +3,7 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Message;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.other.Message;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;

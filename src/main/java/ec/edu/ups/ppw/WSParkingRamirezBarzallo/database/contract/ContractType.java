@@ -1,4 +1,4 @@
-package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database;
+package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

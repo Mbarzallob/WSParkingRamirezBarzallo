@@ -1,7 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Role;
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.Status;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Role;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Status;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
