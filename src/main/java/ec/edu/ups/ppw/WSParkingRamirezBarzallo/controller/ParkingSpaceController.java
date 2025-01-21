@@ -37,7 +37,7 @@ public class ParkingSpaceController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addBlock( ParkingSpaceRequest parkingSpace){
+    public Response addParkingSpace( ParkingSpaceRequest parkingSpace){
         try
         {
             return Response.ok().build();

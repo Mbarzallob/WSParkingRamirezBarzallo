@@ -33,7 +33,7 @@ public class MessageController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addBlock(Message message){
+    public Response addMessage(Message message){
         try
         {
             return Response.ok().build();
