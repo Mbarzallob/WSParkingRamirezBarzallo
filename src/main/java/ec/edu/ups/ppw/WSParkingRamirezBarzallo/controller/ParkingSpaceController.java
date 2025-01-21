@@ -40,8 +40,7 @@ public class ParkingSpaceController {
     public Response addBlock( ParkingSpaceRequest parkingSpace){
         try
         {
-            //TODO: LOGIC INSERT
-            return Response.ok(parkingSpace).build();
+            return Response.ok().build();
         }
         catch(Exception e)
         {
@@ -70,7 +69,7 @@ public class ParkingSpaceController {
         try
         {
 
-            return Response.ok(request).build();
+            return Response.ok().build();
         }
         catch(Exception e){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();

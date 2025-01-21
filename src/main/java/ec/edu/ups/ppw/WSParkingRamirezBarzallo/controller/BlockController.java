@@ -30,8 +30,7 @@ public class BlockController {
     public Response addBlock(Block block){
         try
         {
-            //TODO: LOGIC INSERT
-            return Response.ok(block).build();
+            return Response.ok().build();
         }
         catch(Exception e)
         {

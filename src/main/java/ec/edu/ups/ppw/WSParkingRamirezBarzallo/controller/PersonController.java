@@ -31,14 +31,15 @@ public class PersonController {
     @Path("/vehicle/{personId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getVehicles(@PathParam("personId") int personId){
-        return Response.ok(personId).build();
+        List<Vehicle> vehicles = new ArrayList<>();
+        return Response.ok(vehicles).build();
     }
 
     @POST
     @Path("/vehicle/{personId}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addVehicle(@PathParam("personId") int personId, VehicleRequest vehicle){
-        return Response.ok(personId).build();
+        return Response.ok().build();
     }
 
 

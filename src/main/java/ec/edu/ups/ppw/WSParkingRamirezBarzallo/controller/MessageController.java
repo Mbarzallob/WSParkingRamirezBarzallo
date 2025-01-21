@@ -36,8 +36,7 @@ public class MessageController {
     public Response addBlock(Message message){
         try
         {
-            //TODO: LOGIC INSERT
-            return Response.ok(message).build();
+            return Response.ok().build();
         }
         catch(Exception e)
         {

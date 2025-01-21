@@ -29,7 +29,7 @@ public class ContractController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addContract(ContractRequest contractRequest) {
-        return Response.ok(contractRequest).build();
+        return Response.ok().build();
     }
 
 }

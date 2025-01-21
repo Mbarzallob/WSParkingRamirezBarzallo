@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.profile.Profile;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.profile.ProfileRequest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -11,7 +12,7 @@ public class ProfileController {
     @Path("/profile/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProfile(@PathParam("userId") int userId){
-        return Response.ok().build();
+        return Response.ok(new Profile()).build();
     }
 
     @PUT
