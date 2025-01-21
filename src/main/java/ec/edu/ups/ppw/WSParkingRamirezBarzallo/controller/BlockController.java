@@ -1,6 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.Block;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.BlockRequest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -27,7 +28,7 @@ public class BlockController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addBlock(Block block){
+    public Response addBlock(BlockRequest block){
         try
         {
             return Response.ok().build();
