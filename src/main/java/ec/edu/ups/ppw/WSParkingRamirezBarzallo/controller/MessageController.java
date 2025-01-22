@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.other.Message;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.message.MessageRequest;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.message.MessageService;
+import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -17,31 +21,20 @@ import jakarta.ws.rs.core.Response;
 
 @Path("/message")
 public class MessageController {
-	
+
+    @Inject
+    private MessageService messageService;
+
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMessages(){
-        try
-        {
-            List<Message> messages = new ArrayList<Message>();
-            return Response.ok(messages).build();
-        }
-        catch(Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        return messageService.getMessages();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addMessage(Message message){
-        try
-        {
-            return Response.ok().build();
-        }
-        catch(Exception e)
-        {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+    public Response addMessage(@Valid MessageRequest message){
+        return messageService.addMessage(message);
     }
 
 }
