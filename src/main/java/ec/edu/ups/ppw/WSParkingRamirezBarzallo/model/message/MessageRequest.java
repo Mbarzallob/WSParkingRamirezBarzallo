@@ -1,16 +1,15 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.message;
 
+
 import jakarta.validation.constraints.NotBlank;
 
 public class MessageRequest {
 
-    @NotBlank
+    @NotBlank(message = "El mensaje no puede estar vacio")
     private String message;
-
-    @NotBlank
+    @NotBlank(message = "El email no puede estar vacio")
     private String email;
-
-    @NotBlank
+    @NotBlank(message = "Su nombre no puede estar vacion")
     private String name;
 
     public String getMessage() {

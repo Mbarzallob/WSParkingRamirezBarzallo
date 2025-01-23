@@ -28,13 +28,17 @@ public class MessageController {
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getMessages(){
-        return messageService.getMessages();
+        var result =  messageService.getMessages();
+        return Response.ok(result).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addMessage(@Valid MessageRequest message){
-        return messageService.addMessage(message);
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addMessage(MessageRequest message){
+        var result = messageService.addMessage(message);
+        return Response.ok(result).build();
+
     }
 
 }
