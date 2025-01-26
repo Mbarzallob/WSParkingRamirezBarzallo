@@ -35,7 +35,7 @@ public class MessageController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addMessage(MessageRequest message){
+    public Response addMessage(@Valid MessageRequest message){
         var result = messageService.addMessage(message);
         return Response.ok(result).build();
 
