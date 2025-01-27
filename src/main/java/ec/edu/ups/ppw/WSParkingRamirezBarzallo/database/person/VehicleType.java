@@ -1,9 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class VehicleType {
@@ -11,6 +8,7 @@ public class VehicleType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String type;
 
     public int getId() {

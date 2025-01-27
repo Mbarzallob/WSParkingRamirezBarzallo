@@ -9,6 +9,7 @@ public class ParkingSpaceType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String type;
     @Column(name = "price_hour")
     private double priceHour;

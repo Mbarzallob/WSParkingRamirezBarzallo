@@ -8,8 +8,11 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private String message;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String name;
 
     public String getMessage() {

@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,6 +9,7 @@ public class ContractType {
     @Id
     private char id;
 
+    @Column(nullable = false)
     private String name;
 
     public char getId() {

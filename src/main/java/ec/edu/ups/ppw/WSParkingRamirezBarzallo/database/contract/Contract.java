@@ -4,7 +4,7 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Vehicle;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Contract {
@@ -12,23 +12,25 @@ public class Contract {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private boolean active;
-    @Column(name = "start_date")
-    private Date startDate;
 
-    @Column(name="finish_date")
-    private Date finishDate;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
+
+    @Column(name="finish_date", nullable = false)
+    private LocalDate finishDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parking_space_id")
+    @JoinColumn(name = "parking_space_id", nullable = false)
     private ParkingSpace parkingSpace;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contract_type_id")
+    @JoinColumn(name = "contract_type_id", nullable = false)
     private ContractType contractType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_id")
+    @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
     public int getId() {
@@ -47,19 +49,19 @@ public class Contract {
         this.active = active;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate) {
+    public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
 

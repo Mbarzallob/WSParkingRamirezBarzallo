@@ -8,14 +8,15 @@ public class ParkingSpace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     private boolean occupied;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "block_id")
+    @JoinColumn(name = "block_id", nullable = false)
     private Block block;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parkink_space_type_id")
+    @JoinColumn(name = "parkink_space_type_id", nullable = false)
     private ParkingSpaceType parkingSpaceType;
 
     public int getId() {

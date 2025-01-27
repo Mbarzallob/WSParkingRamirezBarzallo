@@ -7,15 +7,16 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(nullable = false)
     private String plate;
+    @Column(nullable = false)
     private String model;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicle_type_id")
+    @JoinColumn(name = "vehicle_type_id", nullable = false)
     private VehicleType vehicleType;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id", nullable = false)
     private Person owner;
 
     public int getId() {
@@ -49,6 +50,7 @@ public class Vehicle {
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }
+
     public Person getOwner() {
         return owner;
     }
