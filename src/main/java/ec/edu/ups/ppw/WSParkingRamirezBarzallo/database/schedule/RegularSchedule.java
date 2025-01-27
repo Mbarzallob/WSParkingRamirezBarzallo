@@ -3,7 +3,7 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.schedule;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "regular_schedule")
+@Table(name = "regular_schedules")
 public class RegularSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +15,8 @@ public class RegularSchedule {
     @Column(name = "start_hour", nullable = false)
     private String startHour; //HH:mm:ss
 
-    @Column(name="end_date", nullable = false)
-    private String endDate;
+    @Column(name="end_hour", nullable = false)
+    private String endHour;
 
     public int getId() {
         return id;
@@ -42,11 +42,11 @@ public class RegularSchedule {
         this.startHour = startHour;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getEndHour() {
+        return endHour;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setEndHour(String endHour) {
+        this.endHour = endHour;
     }
 }

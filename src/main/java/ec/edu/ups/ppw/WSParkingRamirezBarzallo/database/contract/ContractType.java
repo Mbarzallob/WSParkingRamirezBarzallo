@@ -3,8 +3,10 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "contract_types")
 public class ContractType {
     @Id
     private char id;

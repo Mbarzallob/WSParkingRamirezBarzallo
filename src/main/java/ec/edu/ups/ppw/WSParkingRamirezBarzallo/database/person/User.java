@@ -2,9 +2,10 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "users")
 public class User  {
 
     @Id
@@ -15,7 +16,7 @@ public class User  {
     @Column(nullable = false)
     private String password;
     @Column(name ="creation_date", nullable = false)
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id",nullable = false)
@@ -27,7 +28,8 @@ public class User  {
 
 
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
     private Person person;
 
     public int getId() {
@@ -54,11 +56,11 @@ public class User  {
         this.password = password;
     }
 
-    public Date getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 

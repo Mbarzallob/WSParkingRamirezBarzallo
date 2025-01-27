@@ -23,25 +23,29 @@ public class UserController {
     @Path("/role")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRoles(){
-        return userService.getRoles();
+        var result = userService.getRoles();
+        return Response.ok().entity(result).build();
     }
 
     @GET
     @Path("/status")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getStatuses(){
-        return userService.getStatuses();
+        var result = userService.getStatuses();
+        return Response.ok().entity(result).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers(){
-        return Response.ok(new ArrayList<User>()).build();
+        var result = userService.getUsers();
+        return Response.ok().entity(result).build();
     }
 
     @PUT
     @Path("/{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(@PathParam("userId") int userId, UserRequest user){
         return Response.ok(user).build();
     }

@@ -3,6 +3,7 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "parking_spaces")
 public class ParkingSpace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

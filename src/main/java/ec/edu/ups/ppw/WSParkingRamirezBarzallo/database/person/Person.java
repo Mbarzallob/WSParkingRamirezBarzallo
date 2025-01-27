@@ -2,32 +2,44 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
+@Table(name = "persons")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    @Column(unique = true)
+    private String identification;
     @Column(name = "fist_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
     private String email;
-    @Column(name= "phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gender_id")
     private Gender gender;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -82,11 +94,11 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -105,4 +117,6 @@ public class Person {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }

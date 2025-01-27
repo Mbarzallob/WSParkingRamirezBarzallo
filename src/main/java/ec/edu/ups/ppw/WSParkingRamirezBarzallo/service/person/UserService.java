@@ -2,10 +2,12 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.person;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Role;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Status;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.core.Response;
+
 
 import java.util.List;
 
@@ -14,21 +16,30 @@ public class UserService {
     @Inject
     private UserRepository userRepository;
 
-    public Response getRoles(){
+    public Result<List<Role>> getRoles(){
         try{
             List<Role> roles = userRepository.getRoles();
-            return Response.ok(roles).build();
+            return Result.success(roles);
         }catch (Exception e){
-            return Response.serverError().entity(e.getMessage()).build();
+            return Result.failure(e.getMessage());
         }
     }
 
-    public Response getStatuses(){
+    public Result<List<Status>> getStatuses(){
         try{
             List<Status> statuses = userRepository.getStatuses();
-            return Response.ok(statuses).build();
+            return Result.success(statuses);
         }catch (Exception e){
-            return Response.serverError().entity(e.getMessage()).build();
+            return Result.failure(e.getMessage());
+        }
+    }
+
+    public Result<List<User>> getUsers(){
+        try {
+            List<User> users = userRepository.getUsers();
+            return Result.success(users);
+        }catch (Exception e){
+            return Result.failure(e.getMessage());
         }
     }
 }

@@ -18,7 +18,7 @@ public class ValidationExceptionMapper implements ExceptionMapper<ConstraintViol
         Set<ConstraintViolation<?>> violations = exception.getConstraintViolations();
         String errorMessage = violations.stream()
                 .map(ConstraintViolation::getMessage)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining("; "));
 
         Result<Void> result = Result.failure(errorMessage);
 

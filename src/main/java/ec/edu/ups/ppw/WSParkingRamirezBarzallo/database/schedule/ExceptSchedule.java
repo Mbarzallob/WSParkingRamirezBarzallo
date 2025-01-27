@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "except_schedule")
+@Table(name = "except_schedules")
 public class ExceptSchedule {
 
     @Id

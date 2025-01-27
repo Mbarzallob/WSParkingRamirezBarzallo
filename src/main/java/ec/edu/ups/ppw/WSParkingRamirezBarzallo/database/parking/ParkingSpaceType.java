@@ -1,16 +1,21 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Role;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Vehicle;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.VehicleType;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "parking_space_types")
 public class ParkingSpaceType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
-    private String type;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_type_id",nullable = false)
+    private VehicleType vehicleType;
     @Column(name = "price_hour")
     private double priceHour;
     @Column(name = "price_day")
@@ -25,12 +30,7 @@ public class ParkingSpaceType {
     public void setId(int id) {
         this.id = id;
     }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
+
     public double getPriceHour() {
         return priceHour;
     }
@@ -56,7 +56,11 @@ public class ParkingSpaceType {
         this.priceMonth = priceMonth;
     }
 
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
 
-
-
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+    }
 }

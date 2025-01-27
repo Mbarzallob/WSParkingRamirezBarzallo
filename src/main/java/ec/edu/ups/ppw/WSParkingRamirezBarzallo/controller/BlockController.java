@@ -16,21 +16,24 @@ public class BlockController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBlocks(){
-        return blockService.getBlocks();
+        var result = blockService.getBlocks();
+        return Response.ok().entity(result).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addBlock(@Valid BlockRequest block){
-        return blockService.addBlock(block);
+        var result = blockService.addBlock(block);
+        return Response.ok().entity(result).build();
     }
 
     @DELETE
     @Path("/{blockId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteBlock(@PathParam("blockId") int blockId){
-        return blockService.removeBlock(blockId);
+        var result = blockService.removeBlock(blockId);
+        return Response.ok().entity(result).build();
     }
 
 }
