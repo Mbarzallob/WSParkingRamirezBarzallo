@@ -42,19 +42,19 @@ public class UserRepository {
         em.persist(user);
     }
 
-    public Optional<User> getUserByUsername(String username) {
-        try{
-            String query = "SELECT p FROM User p WHERE p.username=:username";
-            User user  = em.createQuery(query, User.class).setParameter("username", username).getSingleResult();
-            return Optional.of(user);
-        }catch(NoResultException e){
-            return Optional.empty();
-        }
-    }
     public List<User> getUsers() {
         String query = "SELECT p FROM User p";
         TypedQuery<User> q = em.createQuery(query, User.class);
         return q.getResultList();
+    }
+
+    public User getUserByUsername(String username) {
+        String query = "SELECT p FROM User p WHERE p.username=:username";
+        try{
+            return em.createQuery(query, User.class).setParameter("username", username).getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
     }
 
 

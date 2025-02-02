@@ -30,13 +30,12 @@ public class PersonRepository {
         em.persist(person);
     }
 
-    public Optional<Person> getPersonByIdentification(String identification) {
-        try {
-            String query = "SELECT p FROM Person p WHERE p.identification=:identification";
-            Person person  = em.createQuery(query, Person.class).setParameter("identification", identification).getSingleResult();
-            return Optional.of(person);
-        }catch(NoResultException e){
-            return Optional.empty();
+    public Person getPersonByIdentification(String identification) {
+        String query = "SELECT p FROM Person p WHERE p.identification=:variabel";
+        try{
+             return em.createQuery(query, Person.class).setParameter("variabel", identification).getSingleResult();
+        }catch (NoResultException ex){
+            return null;
         }
     }
 

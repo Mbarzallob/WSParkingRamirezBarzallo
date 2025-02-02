@@ -19,6 +19,7 @@ public class UserController {
     @Inject
     private UserService userService;
 
+
     @GET
     @Path("/role")
     @Produces(MediaType.APPLICATION_JSON)

@@ -23,8 +23,9 @@ public class AuthController {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(LoginRequest loginRequest) {
-        return Response.ok(new User()).build();
+    public Response login(@Valid LoginRequest loginRequest) {
+        var response = authService.login(loginRequest);
+        return Response.ok(response).build();
     }
 
     @POST

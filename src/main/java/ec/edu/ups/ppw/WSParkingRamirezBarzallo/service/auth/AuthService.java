@@ -2,10 +2,12 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.auth;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Person;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.auth.LoginRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.auth.RegisterRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.PersonRepository;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.UserRepository;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.utils.JWTUtils;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.utils.Validations;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -25,12 +27,12 @@ public class AuthService {
     @Transactional
     public Result<Void> register(RegisterRequest registerRequest){
         try {
-            Optional<User> existsUsuario = userRepository.getUserByUsername(registerRequest.getUsername());
-            if(existsUsuario.isPresent()){
+            User existsUsuario = userRepository.getUserByUsername(registerRequest.getUsername());
+            if(existsUsuario != null){
                 return Result.failure("Usuario ya existe");
             }
-            Optional<Person> existsPerson = personRepository.getPersonByIdentification(registerRequest.getIdentification());
-            if(existsPerson.isPresent()){
+            Person existsPerson = personRepository.getPersonByIdentification(registerRequest.getIdentification());
+            if(existsPerson != null){
                 return Result.failure("Persona ya existe");
             }
             boolean validPasword = Validations.validatePassword(registerRequest.getPassword());
@@ -61,5 +63,21 @@ public class AuthService {
             return Result.failure(e.getMessage());
         }
 
+    }
+
+    public Result<String> login(LoginRequest loginRequest){
+        try{
+            User user = userRepository.getUserByUsername(loginRequest.getUsername());
+            if(user ==null){
+                return Result.failure("Usuario o contraseña invalido");
+            }
+            if(!user.getPassword().equals(loginRequest.getPassword())){
+                return Result.failure("Usuario o contraseña invalido");
+            }
+            String jwt = JWTUtils.generateTocken(user.getId(), user.getRole().getId());
+            return Result.success(jwt);
+        }catch (Exception e){
+            return Result.failure(e.getMessage());
+        }
     }
 }
