@@ -1,8 +1,13 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.person;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class VehicleRequest {
+    @NotBlank(message = "Ingrese una placa valida")
     private String plate;
+    @NotBlank(message = "Ingrese un modelo valido")
     private String model;
+    @NotBlank(message = "Ingrese un tipo valido")
     private int type;
 
     public String getPlate() {

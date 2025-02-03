@@ -74,7 +74,7 @@ public class AuthService {
             if(!user.getPassword().equals(loginRequest.getPassword())){
                 return Result.failure("Usuario o contraseña invalido");
             }
-            String jwt = JWTUtils.generateTocken(user.getId(), user.getRole().getId());
+            String jwt = JWTUtils.generarToken(user.getId(), user.getRole().getId());
             return Result.success(jwt);
         }catch (Exception e){
             return Result.failure(e.getMessage());

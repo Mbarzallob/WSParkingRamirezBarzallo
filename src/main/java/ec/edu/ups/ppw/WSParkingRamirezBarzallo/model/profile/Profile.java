@@ -1,20 +1,14 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.profile;
 
+import java.time.LocalDate;
+
 public class Profile {
-    private int id;
+
     private String firstName;
     private String lastName;
     private String email;
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String phoneNumber;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -40,11 +34,11 @@ public class Profile {
         this.email = email;
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

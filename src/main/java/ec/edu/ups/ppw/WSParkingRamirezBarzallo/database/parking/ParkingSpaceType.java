@@ -13,7 +13,7 @@ public class ParkingSpaceType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_type_id",nullable = false)
     private VehicleType vehicleType;
     @Column(name = "price_hour")

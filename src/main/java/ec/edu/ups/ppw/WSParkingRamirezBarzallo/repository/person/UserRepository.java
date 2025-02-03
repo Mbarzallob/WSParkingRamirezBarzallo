@@ -10,7 +10,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
-import java.util.Optional;
 
 @Stateless
 public class UserRepository {
@@ -57,5 +56,7 @@ public class UserRepository {
         }
     }
 
-
+    public User getUser(int userId){
+        return em.find(User.class, userId);
+    }
 }

@@ -1,9 +1,16 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 public class ParkingSpaceTypeRequest {
+    @Positive(message = "El precio debe ser mayor a 0")
     private double hourPrice;
+    @Positive(message = "El precio debe ser mayor a 0")
     private double dayPrice;
+    @Positive(message = "El precio debe ser mayor a 0")
     private double weekPrice;
+    @Positive(message = "El precio debe ser mayor a 0")
     private double monthPrice;
 
     public double getHourPrice() {

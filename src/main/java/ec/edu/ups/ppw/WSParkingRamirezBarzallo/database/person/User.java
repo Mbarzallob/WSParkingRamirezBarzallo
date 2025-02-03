@@ -1,4 +1,5 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -18,11 +19,11 @@ public class User  {
     @Column(name ="creation_date", nullable = false)
     private LocalDate creationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id",nullable = false)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id",nullable = false)
     private Role role;
 
@@ -30,6 +31,7 @@ public class User  {
 
     @OneToOne
     @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
+    @JsonIgnore
     private Person person;
 
     public int getId() {

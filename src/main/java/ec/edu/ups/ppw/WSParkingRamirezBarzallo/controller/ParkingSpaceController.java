@@ -4,6 +4,9 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpaceType;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceTypeRequest;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.parking.ParkingService;
+import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -18,34 +21,26 @@ import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/parkingSpace")
+@Path("/parking")
 public class ParkingSpaceController {
+
+    @Inject
+    private ParkingService parkingService;
 
 	@GET
     @Path("/{blockId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParkingSpaces(@PathParam("blockId") int blockId){
-        try
-        {
-            List<ParkingSpace> parkingSpaces = new ArrayList<ParkingSpace>();
-            return Response.ok(parkingSpaces).build();
-        }
-        catch(Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        var result = parkingService.getParkingSpacesByBlock(blockId);
+        return Response.ok(result).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addParkingSpace( ParkingSpaceRequest parkingSpace){
-        try
-        {
-            return Response.ok().build();
-        }
-        catch(Exception e)
-        {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addParkingSpace(@Valid ParkingSpaceRequest parkingSpace){
+        var result = parkingService.addParkingSpace(parkingSpace);
+        return Response.ok(result).build();
     }
 
 
@@ -53,26 +48,14 @@ public class ParkingSpaceController {
     @Path("/types")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getParkingSpaceType(){
-        try
-        {
-            List<ParkingSpaceType> parkingSpaceType = new ArrayList<ParkingSpaceType>();
-            return Response.ok(parkingSpaceType).build();
-        }
-        catch(Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        var result = parkingService.getParkingSpaceTypes();
+        return Response.ok(result).build();
     }
     @PUT
     @Path("/types/{typeId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateParkingSpaceType(@PathParam("typeId") int typeId, ParkingSpaceTypeRequest request){
-        try
-        {
-
-            return Response.ok().build();
-        }
-        catch(Exception e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+    public Response updateParkingSpaceType(@PathParam("typeId") int typeId,@Valid ParkingSpaceTypeRequest request){
+        var result = parkingService.updateParkingSpaceType(request, typeId);
+        return Response.ok(result).build();
     }
 }

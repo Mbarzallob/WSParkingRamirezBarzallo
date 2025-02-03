@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,10 +14,11 @@ public class Vehicle {
     @Column(nullable = false)
     private String model;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_type_id", nullable = false)
     private VehicleType vehicleType;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "person_id", nullable = false)
     private Person owner;
 

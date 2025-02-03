@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,11 +13,12 @@ public class ParkingSpace {
     @Column(nullable = false)
     private boolean occupied;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinColumn(name = "block_id", nullable = false)
     private Block block;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parkink_space_type_id", nullable = false)
     private ParkingSpaceType parkingSpaceType;
 
