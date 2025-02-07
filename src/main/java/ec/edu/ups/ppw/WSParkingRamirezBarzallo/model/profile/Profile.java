@@ -1,5 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.profile;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 public class Profile {
@@ -7,6 +9,7 @@ public class Profile {
     private String firstName;
     private String lastName;
     private String email;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimiento;
     private String phoneNumber;
 

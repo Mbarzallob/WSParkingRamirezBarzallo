@@ -4,11 +4,13 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Role;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Status;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.person.UserDTO;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -34,10 +36,14 @@ public class UserService {
         }
     }
 
-    public Result<List<User>> getUsers(){
+    public Result<List<UserDTO>> getUsers(){
         try {
             List<User> users = userRepository.getUsers();
-            return Result.success(users);
+            List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+            for (User user : users) {
+                userDTOs.add(UserDTO.fromUser(user));
+            }
+            return Result.success(userDTOs);
         }catch (Exception e){
             return Result.failure(e.getMessage());
         }

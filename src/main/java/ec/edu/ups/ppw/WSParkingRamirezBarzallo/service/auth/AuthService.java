@@ -3,6 +3,7 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.auth;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Person;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.auth.LoginRequest;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.auth.LoginResponse;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.auth.RegisterRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.PersonRepository;
@@ -65,7 +66,7 @@ public class AuthService {
 
     }
 
-    public Result<String> login(LoginRequest loginRequest){
+    public Result<LoginResponse> login(LoginRequest loginRequest){
         try{
             User user = userRepository.getUserByUsername(loginRequest.getUsername());
             if(user ==null){
@@ -75,7 +76,10 @@ public class AuthService {
                 return Result.failure("Usuario o contraseña invalido");
             }
             String jwt = JWTUtils.generarToken(user.getId(), user.getRole().getId());
-            return Result.success(jwt);
+            LoginResponse loginResponse = new LoginResponse();
+            loginResponse.setRol(user.getRole().getId());
+            loginResponse.setJWT(jwt);
+            return Result.success(loginResponse);
         }catch (Exception e){
             return Result.failure(e.getMessage());
         }

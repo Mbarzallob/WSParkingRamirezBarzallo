@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class RegisterRequest {
 
+
     private String email;
     @NotBlank(message = "Tiene que tener un usuario valido")
     private String username;
@@ -20,6 +21,7 @@ public class RegisterRequest {
     private String identification;
     private String phone;
     private int genderId;
+    private LocalDate dateOfBirth;
     public String getIdentification() {
         return identification;
     }
@@ -38,7 +40,7 @@ public class RegisterRequest {
         this.dateOfBirth = dateOfBirth;
     }
 
-    private LocalDate dateOfBirth;
+
 
     public String getEmail() {
         return email;

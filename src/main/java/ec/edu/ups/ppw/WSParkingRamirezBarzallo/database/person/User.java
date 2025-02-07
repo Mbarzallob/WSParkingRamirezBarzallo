@@ -15,6 +15,7 @@ public class User  {
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     @Column(name ="creation_date", nullable = false)
     private LocalDate creationDate;

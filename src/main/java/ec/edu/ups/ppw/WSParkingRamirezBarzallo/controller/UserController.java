@@ -3,8 +3,10 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.person.UserService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
 
 @Path("/user")
 public class UserController {
@@ -31,7 +33,10 @@ public class UserController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUsers(){
+    public Response getUsers(@Context SecurityContext sc){
+        if(!sc.isUserInRole("1")){
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         var result = userService.getUsers();
         return Response.ok().entity(result).build();
     }

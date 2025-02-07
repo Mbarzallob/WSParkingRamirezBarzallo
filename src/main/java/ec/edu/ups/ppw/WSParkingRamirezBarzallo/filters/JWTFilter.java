@@ -20,7 +20,7 @@ public class JWTFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
         String path = requestContext.getUriInfo().getPath();
-        if (path.startsWith("/auth/login") || path.startsWith("public")) {
+        if (path.contains("/auth/login") ||  path.contains("/person/gender") || path.contains("/auth/register")) {
             return;
         }
         String token = requestContext.getHeaderString("Authorization");
