@@ -1,9 +1,12 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.filters;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.UserRepository;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.utils.JWTUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.annotation.Priority;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.Priorities;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
@@ -16,6 +19,9 @@ import java.security.Principal;
 @Provider
 @Priority(Priorities.AUTHENTICATION)
 public class JWTFilter implements ContainerRequestFilter {
+
+    @Inject
+    private UserRepository userRepository;
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
@@ -33,10 +39,11 @@ public class JWTFilter implements ContainerRequestFilter {
         }
 
         try {
+            assert token != null;
             token = token.substring(7);
-            Claims claims = JWTUtils.obtenerClaims(token);
-            final String userId = claims.getSubject();
-            final String rol = claims.get("rol", String.class);
+            final String userId = JWTUtils.getUserId(token);
+            User user = userRepository.getUser(Integer.parseInt(userId));
+            String rol = String.valueOf(user.getRole().getId());
 
             requestContext.setSecurityContext(new SecurityContext() {
 

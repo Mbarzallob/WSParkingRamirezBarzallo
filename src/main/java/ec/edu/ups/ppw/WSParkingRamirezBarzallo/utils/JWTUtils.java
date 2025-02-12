@@ -16,7 +16,6 @@ public class JWTUtils {
     public static String generarToken(int userId, int rolId) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("sub", String.valueOf(userId));
-        claims.put("rol", String.valueOf(rolId));
 
         return Jwts.builder()
                 .claims(claims)
@@ -48,11 +47,8 @@ public class JWTUtils {
         }
     }
 
-    public static String obtenerUserId(String token) {
-        return obtenerClaims(token).get("sub",String.class);
-    }
-
-    public static String obtenerRol(String token) {
-        return obtenerClaims(token).get("rol", String.class);
-    }
+   public static String getUserId(String token){
+        Claims claims = obtenerClaims(token);
+        return claims.getSubject();
+   }
 }

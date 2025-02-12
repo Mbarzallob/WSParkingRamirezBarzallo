@@ -12,7 +12,7 @@ public class ProfileRequest {
     private String lastName;
     @NotBlank(message = "Ingrese un email valido")
     private String email;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimiento;
     @NotBlank(message = "Ingrese un numero de telefono valido")
     private String phoneNumber;

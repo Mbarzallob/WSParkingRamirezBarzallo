@@ -12,7 +12,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
-import java.util.Optional;
 
 @Stateless
 public class PersonRepository {
