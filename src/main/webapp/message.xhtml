@@ -8,9 +8,9 @@
 
 
 <h:form>
-	<h:inputText id="name" value="#{messages.message.name}"/>
-	<h:inputText id="email" value="#{messages.message.email}"/>
-	<h:inputText id="message" value="#{messages.message.message}"/>
+	Nombre: <h:inputText id="name" value="#{messages.message.name}"/><br/> 
+	Email: <h:inputText id="email" value="#{messages.message.email}"/><br/> 
+	Mensaje: <h:inputText id="message" value="#{messages.message.message}"/><br/> 
 
 	<h:commandButton action="#{messages.guardar()}" value="Guardar" />
 </h:form>
