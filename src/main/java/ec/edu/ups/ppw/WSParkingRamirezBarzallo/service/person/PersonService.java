@@ -57,8 +57,9 @@ public class PersonService {
         }
     }
 
-    public Result<Void> addVehicleToPerson(int personId, VehicleRequest request){
+    public Result<Void> addVehicleToPerson(int userId, VehicleRequest request){
         try {
+            int personId = personRepository.getPerson(userRepository.getUser(userId).getPerson().getId()).getId();
             var type = personRepository.getVehicleType(personId);
             Vehicle vehicle = new Vehicle();
             vehicle.setVehicleType(type);

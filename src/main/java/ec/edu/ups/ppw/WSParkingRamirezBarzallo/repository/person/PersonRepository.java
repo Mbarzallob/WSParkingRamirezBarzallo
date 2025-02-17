@@ -62,8 +62,8 @@ public class PersonRepository {
     }
 
 
-    public Person getPerson(int userId){
-        return em.find(Person.class, userId);
+    public Person getPerson(int personId){
+        return em.find(Person.class, personId);
     }
     public void addVehicleToPerson(int personId, Vehicle newVehicle) {
         Person person = em.find(Person.class, personId);
@@ -77,5 +77,9 @@ public class PersonRepository {
 
     public VehicleType getVehicleType(int vehicleTypeId) {
         return em.find(VehicleType.class, vehicleTypeId);
+    }
+
+    public Vehicle getVehicle(int id){
+        return em.find(Vehicle.class, id);
     }
 }

@@ -34,14 +34,14 @@ public class PersonController {
     }
 
     @POST
-    @Path("/vehicle/{personId}")
+    @Path("/vehicle/{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-
-    public Response addVehicle(@PathParam("personId") int personId, @Valid VehicleRequest vehicle){
-        var result = personService.addVehicleToPerson(personId, vehicle);
+    public Response addVehicle(@PathParam("userId") int userId, @Valid VehicleRequest vehicle){
+        var result = personService.addVehicleToPerson(userId, vehicle);
         return Response.ok(result).build();
     }
+
 
 
 }

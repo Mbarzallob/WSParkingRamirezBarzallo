@@ -1,16 +1,22 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.parking;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.Contract;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.Block;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpaceType;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.VehicleType;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.FilterParkingSpaces;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceRequest;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceTypeDTO;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceTypeRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.parking.BlockRepository;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.parking.ContractRepository;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.parking.ParkingRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.Iterator;
 import java.util.List;
 
 @ApplicationScoped
@@ -19,18 +25,54 @@ public class ParkingService {
     private ParkingRepository parkingRepository;
 
     @Inject
+    private ContractRepository contractRepository;
+
+    @Inject
     private BlockRepository blockRepository;
-    public Result<List<ParkingSpace>> getParkingSpacesByBlock(int blockId) {
-        try{
-            return Result.success(parkingRepository.getParkingSpacesByBlock(blockId));
+    public Result<List<ParkingSpace>> getParkingSpacesByBlock(int blockId, FilterParkingSpaces filter) {
+        try {
+            List<ParkingSpace> parkingSpaces = parkingRepository.getParkingSpacesByBlock(blockId);
+            Iterator<ParkingSpace> iterator = parkingSpaces.iterator(); // Usamos Iterator para poder eliminar
+
+            while (iterator.hasNext()) {
+                ParkingSpace park = iterator.next();
+                List<Contract> contracts = contractRepository.getAllContracts(park.getId());
+
+                for (Contract contract : contracts) {
+                    if (contract.isActive()) {
+                        if (filter.getStartDate() != null && filter.getStartDate().isAfter(contract.getStartDate())) {
+                            iterator.remove(); // Elimina el parking space si está ocupado en la fecha
+                            break; // No es necesario seguir revisando contratos
+                        }
+
+                        if (filter.getEndDate() != null && filter.getEndDate().isBefore(contract.getFinishDate())) {
+                            iterator.remove();
+                            break;
+                        }
+
+                        if(filter.getVehicleType()!=null){
+
+                        }
+                    }
+                }
+            }
+            return Result.success(parkingSpaces);
         } catch (Exception e) {
             return Result.failure(e.getMessage());
         }
     }
 
-    public Result<List<ParkingSpaceType>> getParkingSpaceTypes() {
+    public Result<ParkingSpace> getParkingSpaceById(int parkingSpaceId) {
         try{
-            return Result.success(parkingRepository.getParkingSpaceTypes());
+            return Result.success(parkingRepository.getParkingSpaceById(parkingSpaceId));
+        }catch (Exception e) {
+            return Result.failure(e.getMessage());
+        }
+    }
+
+    public Result<List<ParkingSpaceTypeDTO>> getParkingSpaceTypes() {
+        try{
+            return Result.success(ParkingSpaceTypeDTO.getDTOList(parkingRepository.getParkingSpaceTypes()));
         } catch (Exception e) {
             return Result.failure(e.getMessage());
         }
@@ -56,6 +98,14 @@ public class ParkingService {
             parkingRepository.updateParkingSpaceType(typeId, parkingSpaceRequest);
             return Result.ok();
         } catch (Exception e) {
+            return Result.failure(e.getMessage());
+        }
+    }
+
+    public Result<List<VehicleType>> getVehicleTypes() {
+        try{
+            return Result.success(parkingRepository.getVehicleTypes());
+        }catch (Exception e) {
             return Result.failure(e.getMessage());
         }
     }

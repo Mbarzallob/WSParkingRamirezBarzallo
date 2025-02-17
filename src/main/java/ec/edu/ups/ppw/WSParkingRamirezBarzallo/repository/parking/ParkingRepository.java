@@ -2,6 +2,7 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.parking;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpaceType;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.VehicleType;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceTypeRequest;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -24,6 +25,9 @@ public class ParkingRepository {
         return em.createQuery(query, ParkingSpaceType.class).getResultList();
     }
 
+    public ParkingSpace getParkingSpaceById(int id) {
+        return em.find(ParkingSpace.class, id);
+    }
     public ParkingSpaceType getParkingSpaceTypeById(int id) {
         return em.find(ParkingSpaceType.class, id);
     }
@@ -41,5 +45,10 @@ public class ParkingRepository {
         parkingSpaceType.setPriceHour(request.getHourPrice());
         parkingSpaceType.setPriceWeek(request.getWeekPrice());
         em.merge(parkingSpaceType);
+    }
+
+    public List<VehicleType> getVehicleTypes() {
+        String query = "SELECT p from VehicleType p";
+        return em.createQuery(query, VehicleType.class).getResultList();
     }
 }

@@ -7,7 +7,6 @@ public class VehicleRequest {
     private String plate;
     @NotBlank(message = "Ingrese un modelo valido")
     private String model;
-    @NotBlank(message = "Ingrese un tipo valido")
     private int type;
 
     public String getPlate() {
