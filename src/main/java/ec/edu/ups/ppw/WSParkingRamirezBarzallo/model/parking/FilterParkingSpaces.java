@@ -31,4 +31,13 @@ public class FilterParkingSpaces {
     public void setVehicleType(int vehicleType) {
         this.vehicleType = vehicleType;
     }
+
+    @Override
+    public String toString() {
+        return "FilterParkingSpaces{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", vehicleType=" + vehicleType +
+                '}';
+    }
 }

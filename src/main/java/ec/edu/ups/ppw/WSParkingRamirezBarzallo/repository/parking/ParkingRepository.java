@@ -20,6 +20,11 @@ public class ParkingRepository {
         return em.createQuery(query, ParkingSpace.class).setParameter("blockId", blockId).getResultList();
     }
 
+    public List<ParkingSpace> getParkingSpaces() {
+        String query = "SELECT p from ParkingSpace p";
+        return em.createQuery(query, ParkingSpace.class).getResultList();
+    }
+
     public List<ParkingSpaceType> getParkingSpaceTypes() {
         String query = "SELECT p from ParkingSpaceType p";
         return em.createQuery(query, ParkingSpaceType.class).getResultList();
@@ -44,11 +49,24 @@ public class ParkingRepository {
         parkingSpaceType.setPriceMonth(request.getMonthPrice());
         parkingSpaceType.setPriceHour(request.getHourPrice());
         parkingSpaceType.setPriceWeek(request.getWeekPrice());
+        parkingSpaceType.setVehicleType(getVehicleTypeById(request.getVehicleType()));
         em.merge(parkingSpaceType);
+    }
+
+    public void addParkingSpaceType(ParkingSpaceType parkingSpaceType) {
+        em.persist(parkingSpaceType);
+    }
+
+    public void deleteParkingSpaceType(int id) {
+        ParkingSpaceType parkingSpace = em.find(ParkingSpaceType.class, id);
+        em.remove(parkingSpace);
     }
 
     public List<VehicleType> getVehicleTypes() {
         String query = "SELECT p from VehicleType p";
         return em.createQuery(query, VehicleType.class).getResultList();
+    }
+    public VehicleType getVehicleTypeById(int id) {
+        return em.find(VehicleType.class, id);
     }
 }

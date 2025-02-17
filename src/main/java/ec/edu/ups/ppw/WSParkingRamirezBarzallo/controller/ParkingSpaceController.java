@@ -5,13 +5,7 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceTypeReq
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.parking.ParkingService;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -21,9 +15,10 @@ public class ParkingSpaceController {
     @Inject
     private ParkingService parkingService;
 
-	@GET
+	@POST
     @Path("/block/{blockId}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response getParkingSpaces(@PathParam("blockId") int blockId, FilterParkingSpaces filter) {
         var result = parkingService.getParkingSpacesByBlock(blockId, filter);
         return Response.ok(result).build();
@@ -56,9 +51,28 @@ public class ParkingSpaceController {
         return Response.ok(result).build();
     }
 
+    @POST
+    @Path("/types")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addParkingType(@Valid ParkingSpaceTypeRequest request){
+        var result = parkingService.addParkingSpaceType(request);
+        return Response.ok(result).build();
+    }
+
+    @DELETE
+    @Path("/types/{typeId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response removeParkingSpaceType(@PathParam("typeId") int typeId){
+        var result = parkingService.deleteParkingSpaceType(typeId);
+        return Response.ok(result).build();
+    }
+
     @PUT
     @Path("/types/{typeId}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response updateParkingSpaceType(@PathParam("typeId") int typeId,@Valid ParkingSpaceTypeRequest request){
         var result = parkingService.updateParkingSpaceType(request, typeId);
         return Response.ok(result).build();

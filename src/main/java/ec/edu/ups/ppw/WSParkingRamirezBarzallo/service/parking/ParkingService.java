@@ -1,6 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.parking;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.Contract;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.Ticket;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.Block;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpaceType;
@@ -16,6 +17,7 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.parking.ParkingReposit
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,9 +33,14 @@ public class ParkingService {
     private BlockRepository blockRepository;
     public Result<List<ParkingSpace>> getParkingSpacesByBlock(int blockId, FilterParkingSpaces filter) {
         try {
-            List<ParkingSpace> parkingSpaces = parkingRepository.getParkingSpacesByBlock(blockId);
+            List<ParkingSpace> parkingSpaces = new ArrayList<>();
+            if(blockId==-1){
+                parkingSpaces = parkingRepository.getParkingSpaces();
+            }else{
+                parkingSpaces = parkingRepository.getParkingSpacesByBlock(blockId);
+            }
             Iterator<ParkingSpace> iterator = parkingSpaces.iterator(); // Usamos Iterator para poder eliminar
-
+            System.out.println(filter.toString());
             while (iterator.hasNext()) {
                 ParkingSpace park = iterator.next();
                 List<Contract> contracts = contractRepository.getAllContracts(park.getId());
@@ -50,10 +57,20 @@ public class ParkingService {
                             break;
                         }
 
-                        if(filter.getVehicleType()!=null){
 
-                        }
                     }
+                }
+
+                List<Ticket> tickets = contractRepository.getTickets(park.getId());
+                for (Ticket ticket : tickets) {
+                    if (ticket.isActive()) {
+                        iterator.remove();
+                    }
+                }
+
+                if(filter.getVehicleType()!=null&&filter.getVehicleType()!=0 && filter.getVehicleType() != park.getParkingSpaceType().getVehicleType().getId()){
+                    iterator.remove();
+                    break;
                 }
             }
             return Result.success(parkingSpaces);
@@ -98,6 +115,31 @@ public class ParkingService {
             parkingRepository.updateParkingSpaceType(typeId, parkingSpaceRequest);
             return Result.ok();
         } catch (Exception e) {
+            return Result.failure(e.getMessage());
+        }
+    }
+
+    public Result<Void> addParkingSpaceType(ParkingSpaceTypeRequest request) {
+        try{
+            ParkingSpaceType parkingSpaceType = new ParkingSpaceType();
+            parkingSpaceType.setVehicleType(parkingRepository.getVehicleTypeById(request.getVehicleType()));
+            parkingSpaceType.setPriceHour(request.getHourPrice());
+            parkingSpaceType.setPriceWeek(request.getWeekPrice());
+            parkingSpaceType.setPriceMonth(request.getMonthPrice());
+            parkingSpaceType.setPriceDay(request.getDayPrice());
+            parkingRepository.addParkingSpaceType(parkingSpaceType);
+            return Result.ok();
+        } catch (Exception e) {
+            return Result.failure(e.getMessage());
+        }
+
+    }
+
+    public Result<Void> deleteParkingSpaceType(int parkingSpaceTypeId) {
+        try{
+            parkingRepository.deleteParkingSpaceType(parkingSpaceTypeId);
+            return Result.ok();
+        }catch (Exception e) {
             return Result.failure(e.getMessage());
         }
     }

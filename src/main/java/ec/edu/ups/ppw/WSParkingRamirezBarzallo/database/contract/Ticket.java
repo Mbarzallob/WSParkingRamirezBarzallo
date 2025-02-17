@@ -34,11 +34,11 @@ public class Ticket {
         this.finishDate = finishDate;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parking_space_id", nullable = false)
     private ParkingSpace parkingSpace;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
@@ -72,4 +72,11 @@ public class Ticket {
         this.vehicle = vehicle;
     }
 
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public LocalDateTime getFinishDate() {
+        return finishDate;
+    }
 }

@@ -13,6 +13,16 @@ public class ParkingSpaceTypeRequest {
     @Positive(message = "El precio debe ser mayor a 0")
     private double monthPrice;
 
+    private int vehicleType;
+
+    public int getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(int vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
     public double getHourPrice() {
         return hourPrice;
     }
