@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Stateless
@@ -44,6 +45,25 @@ public class ScheduleRepository {
         e.setStartHour(es.getStartHour());
         e.setEndHour(es.getEndHour());
         em.persist(e);
+    }
+
+    public RegularSchedule getRegularScheduleByDay(int day){
+        try {
+            String query = "SELECT s FROM RegularSchedule s where s.weekDay = :day";
+            TypedQuery<RegularSchedule> q = em.createQuery(query, RegularSchedule.class);
+            q.setParameter("day", day);
+            return q.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<ExceptSchedule> getExceptSchedulesToday() {
+        String jpql = "SELECT s FROM ExceptSchedule s WHERE s.date = :today";
+
+        return em.createQuery(jpql, ExceptSchedule.class)
+                .setParameter("today", LocalDate.now())
+                .getResultList();
     }
 
     public void deleteExceptSchedule(int id){

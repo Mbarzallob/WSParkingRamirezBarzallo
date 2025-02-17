@@ -2,6 +2,7 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.parking;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpace;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.parking.ParkingSpaceType;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Person;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.VehicleType;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.parking.ParkingSpaceTypeRequest;
 import jakarta.ejb.Stateless;
@@ -69,4 +70,19 @@ public class ParkingRepository {
     public VehicleType getVehicleTypeById(int id) {
         return em.find(VehicleType.class, id);
     }
+
+    public List<String> getEmailsOfPersonsWithActiveTickets() {
+        String jpql = " SELECT DISTINCT p.email FROM Person p\n" +
+                "        JOIN p.vehicles v\n" +
+                "        JOIN Ticket t ON t.vehicle = v\n" +
+                "        WHERE t.active = true";
+
+        return em.createQuery(jpql, String.class).getResultList();
+    }
+
+    public List<String> getAllEmails(){
+        String jpql = "SELECT DISTINCT p.email FROM Person p";
+        return em.createQuery(jpql, String.class).getResultList();
+    }
+
 }

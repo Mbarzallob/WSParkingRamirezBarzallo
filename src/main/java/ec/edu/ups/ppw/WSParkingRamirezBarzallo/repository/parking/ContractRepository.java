@@ -57,6 +57,21 @@ public class ContractRepository {
         return q.getResultList();
     }
 
+    public List<Contract> getContracts(){
+        TypedQuery<Contract> q = em.createQuery("SELECT c FROM Contract c", Contract.class);
+        return q.getResultList();
+    }
+
+    public List<Ticket> getTickets(){
+        TypedQuery<Ticket> q = em.createQuery("SELECT c FROM Ticket c", Ticket.class);
+        return q.getResultList();
+    }
+
+    public List<ContractType> getTypes(){
+        TypedQuery<ContractType> q = em.createQuery("SELECT c FROM ContractType c", ContractType.class);
+        return q.getResultList();
+    }
+
 
 
 }

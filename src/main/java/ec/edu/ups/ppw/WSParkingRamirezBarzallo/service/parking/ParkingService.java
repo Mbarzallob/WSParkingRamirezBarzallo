@@ -86,6 +86,15 @@ public class ParkingService {
             return Result.failure(e.getMessage());
         }
     }
+    public Result<List<ParkingSpace>> getParkingSpaces(){
+        try{
+            return Result.success(parkingRepository.getParkingSpaces());
+        }
+        catch (Exception e) {
+            return Result.failure(e.getMessage());
+        }
+    }
+
 
     public Result<List<ParkingSpaceTypeDTO>> getParkingSpaceTypes() {
         try{

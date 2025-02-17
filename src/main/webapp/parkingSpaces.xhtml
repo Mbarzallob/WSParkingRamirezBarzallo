@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+	<title>Gestión de Parking Spaces</title>
+</head>
+
+<body>
+	<h2>Gestión de Espacios de Estacionamiento</h2>
+
+	<h:form>
+		<h3>Seleccionar Bloque</h3>
+		<h:selectOneMenu value="#{blockParkingBean.selectedBlockId}" onchange="submit()">
+			<f:selectItems value="#{blockParkingBean.blocks}" var="block" binding=""
+						   itemLabel="#{block.name}" itemValue="#{block.id}"/>
+		</h:selectOneMenu>
+	</h:form>
+
+	<h3>Lista de Espacios de Estacionamiento</h3>
+	<h:dataTable value="#{blockParkingBean.parkingSpaces}" var="space" border="1">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{space.id}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Número</f:facet>
+			#{space.number}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Tipo</f:facet>
+			#{space.parkingSpaceType.name}
+		</h:column>
+	</h:dataTable>
+
+</body>
+</html>

@@ -2,6 +2,8 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.controller;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.contract.ContractRequest;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.contract.FilterContract;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.contract.FilterTicket;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.contract.TicketRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.service.parking.ContractService;
 import jakarta.inject.Inject;
@@ -58,6 +60,34 @@ public class ContractController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getAllTickets() {
         var result = contractService.getAllTickets();
+        return Response.ok(result).build();
+    }
+
+    @POST
+    @Path("/report")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response reportContract(FilterContract filter) {
+        var result = contractService.getReportContracts(filter);
+        return Response.ok(result).build();
+    }
+
+    @POST
+    @Path("/ticket/report")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response reportTicket(FilterTicket filter) {
+        var result = contractService.getReportTickets(filter);
+        return Response.ok(result).build();
+    }
+
+
+    @GET
+    @Path("/types")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getContractTypes() {
+        var result = contractService.getTypes();
         return Response.ok(result).build();
     }
 }

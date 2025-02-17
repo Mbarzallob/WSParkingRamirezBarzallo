@@ -24,6 +24,8 @@ public class ParkingSpaceController {
         return Response.ok(result).build();
     }
 
+
+
     @GET
     @Path("/{parkingId}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -31,6 +33,14 @@ public class ParkingSpaceController {
         var result = parkingService.getParkingSpaceById(parkingId);
         return Response.ok(result).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getParkingSpaces(){
+        var result = parkingService.getParkingSpaces();
+        return Response.ok(result).build();
+    }
+
 
 
 
