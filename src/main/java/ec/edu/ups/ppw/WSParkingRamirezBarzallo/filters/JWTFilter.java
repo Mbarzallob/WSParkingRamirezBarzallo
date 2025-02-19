@@ -4,7 +4,6 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.UserRepository;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.utils.JWTUtils;
-import io.jsonwebtoken.Claims;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Priorities;

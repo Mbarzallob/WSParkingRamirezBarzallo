@@ -8,9 +8,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Path("/person")
 public class PersonController {
     @Inject
@@ -42,6 +39,12 @@ public class PersonController {
         return Response.ok(result).build();
     }
 
-
-
+    @DELETE
+    @Path("/vehicle/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteVehicle(@PathParam("id") int id){
+        var result = personService.removeVehicle(id);
+        return Response.ok(result).build();
+    }
 }

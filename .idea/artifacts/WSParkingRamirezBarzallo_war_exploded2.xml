@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="WSParkingRamirezBarzallo:war exploded2">
+    <output-path>$PROJECT_DIR$/classes/artifacts/WSParkingRamirezBarzallo_war_exploded2</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="WSParkingRamirezBarzallo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt-api:0.12.6" />
+          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt-impl:0.12.6" />
+          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt-jackson:0.12.6" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.17.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.17.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.17.0" />
+          <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.14.18" />
+          <element id="library" level="project" name="Maven: com.sun.mail:jakarta.mail:2.0.1" />
+          <element id="library" level="project" name="Maven: com.sun.activation:jakarta.activation:2.0.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="WSParkingRamirezBarzallo/web/Web" />
+    </root>
+  </artifact>
+</component>

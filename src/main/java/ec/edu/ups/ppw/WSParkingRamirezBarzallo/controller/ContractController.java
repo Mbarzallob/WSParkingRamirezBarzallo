@@ -81,7 +81,6 @@ public class ContractController {
         return Response.ok(result).build();
     }
 
-
     @GET
     @Path("/types")
     @Produces(MediaType.APPLICATION_JSON)
@@ -90,4 +89,14 @@ public class ContractController {
         var result = contractService.getTypes();
         return Response.ok(result).build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteContract(@PathParam("id") int id) {
+        var result = contractService.CancelContract(id);
+        return Response.ok(result).build();
+    }
+
 }

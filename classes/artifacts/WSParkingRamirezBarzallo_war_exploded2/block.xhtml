@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<title>Gestión de Bloques</title>
+</head>
+
+<body>
+	<h2>Gestión de Bloques</h2>
+
+	<h:form>
+		<h3>Añadir Bloque</h3>
+		<h:panelGrid columns="2">
+			<h:outputLabel for="name" value="Nombre del Bloque:"/>
+			<h:inputText id="name" value="#{blockParkingBean.block.name}"/>
+
+			<h:commandButton action="#{blockParkingBean.addBlock()}" value="Guardar"/>
+		</h:panelGrid>
+	</h:form>
+
+	<h3>Lista de Bloques</h3>
+	<h:dataTable value="#{blockParkingBean.blocks}" var="block" border="1">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{block.id}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{block.name}
+		</h:column>
+	</h:dataTable>
+
+</body>
+</html>

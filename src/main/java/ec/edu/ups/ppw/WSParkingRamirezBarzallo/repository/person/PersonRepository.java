@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person;
 
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.Ticket;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Gender;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Person;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Vehicle;
@@ -81,5 +82,16 @@ public class PersonRepository {
 
     public Vehicle getVehicle(int id){
         return em.find(Vehicle.class, id);
+    }
+
+    public void removeVehicle(int id){
+        em.remove(em.find(Vehicle.class, id));
+    }
+
+    public List<Ticket> ticketsWithVehicle(int vehicleTypeId) {
+        String jpql = "SELECT t from Ticket t where t.vehicle.id = :id";
+        TypedQuery<Ticket> q = em.createQuery(jpql, Ticket.class);
+        q.setParameter("id", vehicleTypeId);
+        return q.getResultList();
     }
 }

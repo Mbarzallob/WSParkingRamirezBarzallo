@@ -26,7 +26,7 @@ public class ContractRepository {
     }
 
     public List<Contract> getAllContracts(int parkingSpaceId){
-        String query = "SELECT c FROM Contract c where c.parkingSpace.id = :parkingSpaceId";
+        String query = "SELECT c FROM Contract c where c.parkingSpace.id = :parkingSpaceId and c.active = true";
         TypedQuery<Contract> q = em.createQuery(query, Contract.class).setParameter("parkingSpaceId", parkingSpaceId);
         return q.getResultList();
     }
@@ -73,5 +73,10 @@ public class ContractRepository {
     }
 
 
+    public void cancelContract(int id){
+        Contract contract = em.find(Contract.class, id);
+        contract.setActive(false);
+        em.merge(contract);
+    }
 
 }

@@ -80,4 +80,17 @@ public class PersonService {
         }
     }
 
+    public Result<Void> removeVehicle(int vehicleId){
+        try{
+            var tickets = personRepository.ticketsWithVehicle(vehicleId);
+            if(!tickets.isEmpty()){
+                return Result.failure("No se puede eliminar el ticket porque tiene tickets asociados");
+            }
+            personRepository.removeVehicle(vehicleId);
+            return Result.ok();
+        }catch (Exception e){
+            return Result.failure(e.getMessage());
+        }
+    }
+
 }

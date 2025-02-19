@@ -192,4 +192,13 @@ public class ContractService {
             return Result.failure(e.getMessage());
         }
     }
+
+    public Result<Void> CancelContract(int id){
+        try{
+            repo.cancelContract(id);
+            return Result.ok();
+        }catch (Exception e){
+            return Result.failure(e.getMessage());
+        }
+    }
 }
