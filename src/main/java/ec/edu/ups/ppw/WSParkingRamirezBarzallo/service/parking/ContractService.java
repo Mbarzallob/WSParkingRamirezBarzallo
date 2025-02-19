@@ -58,7 +58,7 @@ public class ContractService {
         }
     }
 
-    public Result<Void> addTicket(TicketRequest request){
+    public Result<Integer> addTicket(TicketRequest request){
         try{
             Ticket ticket = new Ticket();
             ticket.setStartDate(request.getStartDate());
@@ -67,7 +67,10 @@ public class ContractService {
             ticket.setVehicle(personRepo.getVehicle(request.getVehicleId()));
             ticket.setActive(true);
             repo.addTicket(ticket);
-            return Result.ok();
+            System.out.println("...................................");
+            System.out.println(ticket.getId());
+            System.out.println("----------------------------");
+            return Result.success(ticket.getId());
         } catch (Exception e) {
             return Result.failure(e.getMessage());
         }

@@ -60,7 +60,14 @@ public class ParkingService {
 
                     }
                 }
-
+                if(filter.getForTicket()){
+                    List<Ticket> tickets = contractRepository.getTickets(park.getId());
+                    for (Ticket ticket : tickets) {
+                        if (ticket.isActive()) {
+                            iterator.remove();
+                        }
+                    }
+                }
 
                 if(filter.getVehicleType()!=null&&filter.getVehicleType()!=0 && filter.getVehicleType() != park.getParkingSpaceType().getVehicleType().getId()){
                     iterator.remove();

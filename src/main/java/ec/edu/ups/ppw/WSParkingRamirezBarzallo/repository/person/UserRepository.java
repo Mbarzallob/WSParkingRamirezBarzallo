@@ -59,4 +59,10 @@ public class UserRepository {
     public User getUser(int userId){
         return em.find(User.class, userId);
     }
+
+    public void updateUerRole(int userId, Role role) {
+        User user = getUser(userId);
+        user.setRole(role);
+        em.merge(user);
+    }
 }

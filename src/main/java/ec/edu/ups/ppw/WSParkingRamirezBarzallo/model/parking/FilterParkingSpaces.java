@@ -7,6 +7,19 @@ public class FilterParkingSpaces {
     private LocalDate startDate;
     private LocalDate endDate;
     private Integer vehicleType;
+    private Boolean forTicket;
+
+    public void setVehicleType(Integer vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public Boolean getForTicket() {
+        return forTicket;
+    }
+
+    public void setForTicket(Boolean forTicket) {
+        this.forTicket = forTicket;
+    }
 
     public LocalDate getStartDate() {
         return startDate;

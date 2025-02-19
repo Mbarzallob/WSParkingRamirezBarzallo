@@ -5,6 +5,7 @@ import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Status;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.User;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.generic.Result;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.person.UserDTO;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.person.UserRoleRequest;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person.UserRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -45,6 +46,17 @@ public class UserService {
             }
             return Result.success(userDTOs);
         }catch (Exception e){
+            return Result.failure(e.getMessage());
+        }
+    }
+
+    public Result<Void> updateUserRole(UserRoleRequest request){
+        try{
+            Role role = userRepository.getRole(request.getRoleId());
+            userRepository.updateUerRole(request.getUserId(), role);
+            return Result.ok();
+        } catch (Exception e) {
+
             return Result.failure(e.getMessage());
         }
     }

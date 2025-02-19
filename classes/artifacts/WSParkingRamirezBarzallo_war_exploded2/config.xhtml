@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<body>
+
+
+<h1>Genero</h1>
+<h:form>
+	Nombre: <h:inputText id="name" value="#{configuration.gender.description}"/><br/>
+
+	<h:commandButton action="#{configuration.guardarGender()}" value="Guardar Genero" />
+</h:form>
+
+<h1>Tipo de vehiculo</h1>
+<h:form>
+	Nombre: <h:inputText id="nametype" value="#{configuration.vehicleType.type}"/><br/>
+	Tamaño: <h:inputText id="tamano" value="#{configuration.vehicleType.size}"/><br/>
+
+	<h:commandButton action="#{configuration.guardarVehicleType()}" value="Guardar Genero" />
+</h:form>
+
+</body>
+</html>
