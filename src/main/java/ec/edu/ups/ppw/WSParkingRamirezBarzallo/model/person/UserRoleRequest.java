@@ -2,22 +2,22 @@ package ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.person;
 
 public class UserRoleRequest {
 
-    private int UserId;
-    private int RoleId;
+    private int userId;
+    private int roleId;
 
     public int getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(int userId) {
-        UserId = userId;
+        userId = userId;
     }
 
     public int getRoleId() {
-        return RoleId;
+        return roleId;
     }
 
     public void setRoleId(int roleId) {
-        RoleId = roleId;
+        roleId = roleId;
     }
 }

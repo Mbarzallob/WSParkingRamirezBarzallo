@@ -17,6 +17,16 @@ public class ProfileRequest {
     @NotBlank(message = "Ingrese un numero de telefono valido")
     private String phoneNumber;
 
+    private int rol;
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
     public String getFirstName() {
         return firstName;
     }

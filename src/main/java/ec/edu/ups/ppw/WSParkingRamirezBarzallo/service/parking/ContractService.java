@@ -34,6 +34,17 @@ public class ContractService {
         try{
             Contract contract = new Contract();
             ContractType contractType = repo.getContractType(request.getTypeId());
+            List<Contract> activeContracts = repo.activeContract();
+            for (Contract c : activeContracts) {
+                if (c.isActive()) {
+                    // Validación de solapamiento, pero permitimos si termina cuando otro empieza y viceversa
+                    if (!(request.getEndDate().equals(c.getStartDate()) || request.getStartDate().equals(c.getFinishDate()))) {
+                        if (!(request.getEndDate().isBefore(c.getStartDate()) || request.getStartDate().isAfter(c.getFinishDate()))) {
+                            return Result.failure("Las fechas del contrato se superponen con otro contrato activo.");
+                        }
+                    }
+                }
+            }
             contract.setContractType(contractType);
             contract.setActive(true);
             contract.setStartDate(request.getStartDate());

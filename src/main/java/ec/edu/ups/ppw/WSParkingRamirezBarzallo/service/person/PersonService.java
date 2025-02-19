@@ -31,10 +31,10 @@ public class PersonService {
         }
     }
 
-    public Result<Void> updateProfile(ProfileRequest request, int userId){
+    public Result<Void> updateProfile(ProfileRequest request, int userId, boolean personal){
         try{
             User user =  userRepository.getUser(userId);
-            personRepository.updateProfile(request, user.getPerson().getId());
+            personRepository.updateProfile(request, user.getPerson().getId(), personal);
             return Result.ok();
         }catch (Exception e){
             return Result.failure(e.getMessage());

@@ -25,6 +25,11 @@ public class ContractRepository {
         return em.find(ContractType.class, id);
     }
 
+    public List<Contract> activeContract() {
+        TypedQuery<Contract> query = em.createQuery("select c from Contract c where c.active = true", Contract.class);
+        return query.getResultList();
+    }
+
     public List<Contract> getAllContracts(int parkingSpaceId){
         String query = "SELECT c FROM Contract c where c.parkingSpace.id = :parkingSpaceId and c.active = true";
         TypedQuery<Contract> q = em.createQuery(query, Contract.class).setParameter("parkingSpaceId", parkingSpaceId);

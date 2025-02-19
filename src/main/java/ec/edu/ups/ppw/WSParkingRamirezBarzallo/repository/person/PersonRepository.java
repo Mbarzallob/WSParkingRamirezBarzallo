@@ -1,10 +1,7 @@
 package ec.edu.ups.ppw.WSParkingRamirezBarzallo.repository.person;
 
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.contract.Ticket;
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Gender;
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Person;
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.Vehicle;
-import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.VehicleType;
+import ec.edu.ups.ppw.WSParkingRamirezBarzallo.database.person.*;
 import ec.edu.ups.ppw.WSParkingRamirezBarzallo.model.profile.ProfileRequest;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -42,10 +39,18 @@ public class PersonRepository {
         }
     }
 
-    public void updateProfile(ProfileRequest profileRequest, int personId) throws Exception {
+    public Role getRoleById(int id) {
+        return em.find(Role.class, id);
+    }
+
+
+    public void updateProfile(ProfileRequest profileRequest, int personId, boolean personal) throws Exception {
         Person person = em.find(Person.class, personId);
         if(person == null){
             throw new Exception("Datos invalidos");
+        }
+        if(!personal){
+            person.getUser().setRole(getRoleById(profileRequest.getRol()));
         }
         person.setFirstName(profileRequest.getFirstName());
         person.setLastName(profileRequest.getLastName());

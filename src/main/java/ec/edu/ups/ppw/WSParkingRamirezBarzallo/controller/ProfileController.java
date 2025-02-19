@@ -26,7 +26,7 @@ public class ProfileController {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateProfile(@Context SecurityContext requestContext, @Valid ProfileRequest profile){
-        var result = personService.updateProfile(profile, Integer.parseInt(requestContext.getUserPrincipal().getName()));
+        var result = personService.updateProfile(profile, Integer.parseInt(requestContext.getUserPrincipal().getName()), true);
         return Response.ok(result).build();
     }
 
@@ -37,7 +37,7 @@ public class ProfileController {
         if(!sc.isUserInRole("1")){
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
-        var result = personService.updateProfile(profile, userId);
+        var result = personService.updateProfile(profile, userId,false);
         return Response.ok(result).build();
     }
 

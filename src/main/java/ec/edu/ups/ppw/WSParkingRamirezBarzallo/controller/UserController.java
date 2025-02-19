@@ -42,17 +42,7 @@ public class UserController {
         return Response.ok().entity(result).build();
     }
 
-    @PUT
-    @Path("/role")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUserRole (UserRoleRequest request,@Context SecurityContext sc){
-        if(!sc.isUserInRole("1")){
-            return Response.status(Response.Status.UNAUTHORIZED).build();
-        }
-        var result = userService.updateUserRole(request);
-        return Response.ok().entity(result).build();
-    }
+
 
 
 }
